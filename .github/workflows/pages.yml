@@ -1,10 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll site to Pages
+name: Deploysite to Pages
 
 on:
   push:
@@ -40,6 +34,13 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
+      - name: Checkout AletheInAlf repo
+        uses: actions/checkout@v4
+        with:
+          repository: cvc5/AletheInAlf
+          path: _external/AletheInAlf
+      - name: Copy external documentation
+        run: cp _external/AletheInAlf/docs/introduction.md ./aletheinalf.md
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
