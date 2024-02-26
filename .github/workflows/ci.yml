@@ -24,6 +24,6 @@ jobs:
           repository: cvc5/AletheInAlf
           path: _external/AletheInAlf
       - name: Copy external documentation
-        run: cp _external/AletheInAlf/docs/introduction.md ./aletheinalf.md
+        run: cp -r _external/AletheInAlf/docs/ ./AletheInAlf
       - name: Build with Jekyll
         run: bundle exec jekyll build -V
