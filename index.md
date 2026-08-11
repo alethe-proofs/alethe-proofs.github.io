@@ -10,7 +10,9 @@ The Alethe project provides a proof format for automated reasoning tools, especi
 
 The core of the project is the **Alethe Proof Format** and the **Alethe Calculus**.  Both are documented together in an evolving specification document.
 
-The current version of this specification is available here.
+## Specification
+
+The latest version is always available [here](/specification.pdf).
 
 ## The Alethe Ecosystem
 
