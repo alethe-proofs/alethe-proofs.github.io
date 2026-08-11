@@ -41,6 +41,18 @@ jobs:
           path: _external/AletheInEunoia
       - name: Copy external documentation
         run: cp -r _external/AletheInEunoia/docs ./AletheInEunoia/
+      - name: Download latest specification PDF
+        env:
+          GH_TOKEN: ${{ secrets.ALETHE_SPEC_TOKEN }}
+        run: |
+          RUN_ID=$(gh run list \
+            --repo alethe-proofs/specification \
+            --json databaseId,status,conclusion \
+            -b main -L 1 \
+            --jq '.[] |  select(.conclusion == "success" and .status == "completed") .databaseId')
+          gh run download ${RUN_ID} \
+            --repo alethe-proofs/specification
+          mv artifact/doc.pdf specification.pdf
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"

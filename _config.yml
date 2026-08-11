@@ -11,4 +11,9 @@ callouts:
   warning:
     title: Warning
     color: red
-
+exclude:
+  - artifact
+  - flake.lock
+  - flake.nix
+  - README.md
+  - _external
